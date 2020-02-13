@@ -1,1 +1,1 @@
-idocker service ls
+docker service ls

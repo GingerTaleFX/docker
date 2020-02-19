@@ -1,18 +1,27 @@
 FROM debian:latest
 MAINTAINER kroselin
 
-ENV TS3SERVER_LICENSE=accept
+# ENV TS3SERVER_LICENSE=accept
 
 WORKDIR /home/teamspeak
 
-EXPOSE 9987/udp 10011 30033
+# EXPOSE 9987/udp 10011 30033
 
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y wget bzip2 && \
-	    wget http://dl.4players.de/ts/releases/3.0.13.4/teamspeak3-server_linux_amd64-3.0.13.4.tar.bz2 && \
-		    tar -xvf teamspeak3-server_linux_amd64-3.0.13.4.tar.bz2
+#   wget http://dl.4players.de/ts/releases/3.0.13.4/teamspeak3-server_linux_amd64-3.0.13.4.tar.bz2 && \
+#   wget http://dl.4players.de/ts/releases/3.8.0/teamspeak3-server_linux_amd64-3.8.0.tar.bz2 && \
+	    wget http://dl.4players.de/ts/releases/3.3.1/teamspeak3-server_linux_amd64-3.3.1.tar.bz2 && \
+		    tar -xvf teamspeak3-server_linux_amd64-3.3.1.tar.bz2
+#   tar -xvf teamspeak3-server_linux_amd64-3.8.0.tar.bz2
+#   tar -xvf teamspeak3-server_linux_amd64-3.0.13.4.tar.bz2
 
-			WORKDIR teamspeak3-server_linux_amd64
+WORKDIR teamspeak3-server_linux_amd64
+
+ENV TS3SERVER_LICENSE=accept
+
+RUN touch .ts3server_license_accepted
+RUN ./ts3server_startscript.sh start license_accepted=1
 
 # CMD sh ts3server_minimal_runscript.sh
 CMD /bin/bash

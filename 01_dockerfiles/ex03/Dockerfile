@@ -1,3 +1,6 @@
+# For Gitlab project u need BIG container and machine. So you need to do big Char:
+# docker-machine create --driver virtualbox --virtualbox-memory 4048 --virtualbox-cpu-count 2 Char
+
 FROM ubuntu:16.04
 MAINTAINER kroselin
 EXPOSE 443 80 22
